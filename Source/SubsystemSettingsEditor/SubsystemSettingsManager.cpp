@@ -82,6 +82,8 @@ void FSubsystemSettingsManager::Register()
 
 void FSubsystemSettingsManager::Unregister()
 {
+	USubsystemBrowserSettings::OnSettingChanged().RemoveAll(this);
+
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>(TEXT("Settings")))
 	{
 		SettingsModule->UnregisterViewer(TEXT("Subsystem"));
